@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER APP</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container{
+            height:90vh;
+            flex-direction:column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            max-width: 100%;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        
+        input {
+            width: calc(100% - 16px); /* Adjusted to include padding in the width */
+            padding: 8px;
+            margin: 5px 0 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s; /* Smooth transition on border color change */
+        }
+        
+        input:focus {
+            border-color: #4caf50; /* Change border color on focus */
+        }
+        
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition on background color change */
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Additional styles for the prediction result */
+        h2, p {
+            margin-top: 20px;
+            color: #333;
+        }
+        .title{
+            height:10vh;
+            text-align:center;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <h1 class = "title"> WEATHER PREDICTION </h1>
+    <div class="container">
+    <form method="post" action="/predict">
+        <label for="precipitation">Precipitation:</label>
+        <input type="text" id="precipitation" name="precipitation" required>
+
+        <label for="temp_max">Max Temperature:</label>
+        <input type="text" id="temp_max" name="temp_max" required>
+
+        <label for="temp_min">Min Temperature:</label>
+        <input type="text" id="temp_min" name="temp_min" required>
+
+        <label for="wind">Wind Speed:</label>
+        <input type="text" id="wind" name="wind" required>
+
+        <button type="submit">Predict</button>
+        {% if prediction %}
+        <h2>Prediction Result:</h2>
+        <p>The predicted weather is: {{ prediction }}</p>
+    {% endif %}
+    </form>
+</div>
+  
+</body>
+</html>
